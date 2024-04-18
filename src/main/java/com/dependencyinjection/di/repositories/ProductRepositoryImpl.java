@@ -3,8 +3,11 @@ package com.dependencyinjection.di.repositories;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.dependencyinjection.di.models.Product;
 
+@Repository
 public class ProductRepositoryImpl implements IProductRepository {
 
   private List<Product> data;

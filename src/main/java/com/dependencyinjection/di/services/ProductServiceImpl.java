@@ -3,11 +3,20 @@ package com.dependencyinjection.di.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.dependencyinjection.di.models.Product;
-import com.dependencyinjection.di.repositories.ProductRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+import com.dependencyinjection.di.models.Product;
+import com.dependencyinjection.di.repositories.IProductRepository;
+
+
+@Service
 public class ProductServiceImpl implements IProductService {
-  private ProductRepositoryImpl repository = new ProductRepositoryImpl();
+
+  @Autowired
+  @Qualifier("productRepositoryImpl")
+  private IProductRepository repository;
   @Override
   public List<Product> findAll() {
     return repository.findAll().stream().map(p -> {
