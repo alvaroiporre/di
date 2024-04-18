@@ -6,8 +6,9 @@ import java.util.stream.Collectors;
 import com.dependencyinjection.di.models.Product;
 import com.dependencyinjection.di.repositories.ProductRepositoryImpl;
 
-public class ProductServiceImpl {
+public class ProductServiceImpl implements IProductService {
   private ProductRepositoryImpl repository = new ProductRepositoryImpl();
+  @Override
   public List<Product> findAll() {
     return repository.findAll().stream().map(p -> {
       Double priceImp = p.getPrice() * 1.25d;
@@ -17,6 +18,8 @@ public class ProductServiceImpl {
       return newProduc;
     }).collect(Collectors.toList());
   }
+
+  @Override
   public Product findById(Long id) {
     return repository.findById(id);
   }
