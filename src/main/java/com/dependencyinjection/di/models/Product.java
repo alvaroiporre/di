@@ -4,7 +4,7 @@ public class Product {
   private Long id;
   private String name;
   private Long price;
-  
+
   public Product() {}
   public Product(Long id, String name, Long price) {
     this.id = id;
@@ -30,4 +30,12 @@ public class Product {
     this.price = price;
   }
   
+  @Override
+  protected Object clone() {
+    try {
+      return super.clone();
+    } catch (Exception e) {
+      return new Product(id, name, price);
+    }
+  }
 }

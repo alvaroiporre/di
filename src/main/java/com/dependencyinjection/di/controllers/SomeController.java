@@ -13,7 +13,7 @@ import com.dependencyinjection.di.services.ProductService;
 @RestController
 @RequestMapping("/api")
 public class SomeController {
-  
+
   private ProductService service = new ProductService();
 
   @GetMapping
