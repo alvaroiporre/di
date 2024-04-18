@@ -31,7 +31,7 @@ public class Product {
   }
   
   @Override
-  protected Object clone() {
+  public Object clone() {
     try {
       return super.clone();
     } catch (Exception e) {

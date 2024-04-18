@@ -5,11 +5,11 @@ import java.util.List;
 
 import com.dependencyinjection.di.models.Product;
 
-public class ProductRepository {
+public class ProductRepositoryImpl implements IProductRepository {
 
   private List<Product> data;
 
-  public ProductRepository() {
+  public ProductRepositoryImpl() {
     this.data = Arrays.asList(
       new Product(1L, "Memory", 300L),
       new Product(2L, "display", 800L),

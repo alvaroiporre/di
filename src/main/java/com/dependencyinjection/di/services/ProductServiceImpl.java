@@ -4,15 +4,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.dependencyinjection.di.models.Product;
-import com.dependencyinjection.di.repositories.ProductRepository;
+import com.dependencyinjection.di.repositories.ProductRepositoryImpl;
 
-public class ProductService {
-  private ProductRepository repository = new ProductRepository();
+public class ProductServiceImpl {
+  private ProductRepositoryImpl repository = new ProductRepositoryImpl();
   public List<Product> findAll() {
     return repository.findAll().stream().map(p -> {
       Double priceImp = p.getPrice() * 1.25d;
-      Product newProduct = new Product(p.getId(), p.getName(), priceImp.longValue());
-      return newProduct;
+      //Product newProduct = new Product(p.getId(), p.getName(), priceImp.longValue());
+      Product newProduc = (Product) p.clone();
+      newProduc.setPrice(priceImp.longValue());
+      return newProduc;
     }).collect(Collectors.toList());
   }
   public Product findById(Long id) {
