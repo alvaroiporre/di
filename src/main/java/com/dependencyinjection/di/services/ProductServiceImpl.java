@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.dependencyinjection.di.models.Product;
@@ -15,12 +16,15 @@ import com.dependencyinjection.di.repositories.IProductRepository;
 public class ProductServiceImpl implements IProductService {
 
   @Autowired
+  private Environment environment;
+
+  @Autowired
   @Qualifier("productRepositoryImpl")
   private IProductRepository repository;
   @Override
   public List<Product> findAll() {
     return repository.findAll().stream().map(p -> {
-      Double priceImp = p.getPrice() * 1.25d;
+      Double priceImp = p.getPrice() * environment.getProperty("config.price.tax", Double.class);
       //Product newProduct = new Product(p.getId(), p.getName(), priceImp.longValue());
       Product newProduc = (Product) p.clone();
       newProduc.setPrice(priceImp.longValue());
