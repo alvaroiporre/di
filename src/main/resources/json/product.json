@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Memory json",
+    "price": 375
+},
+{
+    "id": 2,
+    "name": "display json",
+    "price": 1000
+},
+{
+    "id": 3,
+    "name": "card json",
+    "price": 125
+},
+{
+    "id": 4,
+    "name": "modem json",
+    "price": 250
+}
+]
